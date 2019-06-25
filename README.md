@@ -3,4 +3,5 @@ UI based applications for image editing tools
 
 Casey Stamper
 
-COMP 401 - Foundation of Programming - Fall 2018
+The core of this project was developed in COMP 401 - Foundation of Programming during Fall 2018.
+However, additions have been made to turn the assignment into an executable. 
