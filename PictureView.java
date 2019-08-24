@@ -1,30 +1,50 @@
 package miniapps;
 
-import java.awt.BorderLayout;
-import java.io.IOException;
+import java.awt.Canvas;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
+public class PictureView extends Canvas implements ROIObserver {
 
-public class PictureViewer {
-	public static JInternalFrame main(String[] args) throws IOException {
-		Picture p = PictureReader.readFromFile();
-		p.setCaption("KMP in Namibia");
-		SimplePictureViewWidget simple_widget = new SimplePictureViewWidget(p);
+	private ObservablePicture picture;
+	private BufferedImage buffered_image;
 
-		JInternalFrame main_frame = new JInternalFrame();
-		main_frame.setTitle("Simple Picture View");
-		//main_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	public PictureView(ObservablePicture p) {
+		setPicture(p);
+	}
 
-		JPanel top_panel = new JPanel();
-		top_panel.setLayout(new BorderLayout());
-		top_panel.add(simple_widget, BorderLayout.CENTER);
-		main_frame.setContentPane(top_panel);
+	public void setPicture(ObservablePicture p) {
+		if (picture == p) {
+			return;
+		}
 
-		main_frame.pack();
-		main_frame.setVisible(true);
-		
-		return main_frame;
+		if (picture != null) {
+			picture.unregisterROIObserver(this);
+		}
+
+		picture = p;
+		picture.registerROIObserver(this);
+		buffered_image = new BufferedImage(p.getWidth(), p.getHeight(), BufferedImage.TYPE_INT_RGB);
+		this.setPreferredSize(new Dimension(p.getWidth(), p.getHeight()));
+		this.setSize(new Dimension(p.getWidth(), p.getHeight()));
+		notify(picture, new RegionImpl(0, 0, p.getWidth() - 1, p.getHeight() - 1));
+	}
+
+	public ObservablePicture getPicture() {
+		return picture;
+	}
+
+	public void paint(Graphics g) {
+		g.drawImage(buffered_image, 0, 0, this);
+	}
+
+	public void notify(ObservablePicture picture, Region area) {
+		for (int x = area.getLeft(); x <= area.getRight(); x++) {
+			for (int y = area.getTop(); y <= area.getBottom(); y++) {
+				buffered_image.setRGB(x, y, PictureReader.pixelToRGB(picture.getPixel(x, y)));
+			}
+		}
+		repaint();
 	}
 }
