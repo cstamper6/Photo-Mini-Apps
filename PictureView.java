@@ -1,37 +1,30 @@
 package miniapps;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.awt.BorderLayout;
 import java.io.IOException;
-import java.net.URL;
 
-import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 
-public class PictureReader {
+public class PictureViewer {
+	public static JInternalFrame main(String[] args) throws IOException {
+		Picture p = PictureReader.readFromFile();
+		p.setCaption("KMP in Namibia");
+		SimplePictureViewWidget simple_widget = new SimplePictureViewWidget(p);
 
-	public static Picture readFromFile() throws IOException {
-		BufferedImage bi = ImageIO.read(FileChooser.main());
-		Pixel[][] parray = new Pixel[bi.getWidth()][bi.getHeight()];
-		for (int x = 0; x < bi.getWidth(); x++) {
-			for (int y = 0; y < bi.getHeight(); y++) {
-				parray[x][y] = rgbToPixel(bi.getRGB(x, y));
-			}
-		}
-		Picture picture = new MutablePixelArrayPicture(parray, "caption");
-		return picture;
+		JInternalFrame main_frame = new JInternalFrame();
+		main_frame.setTitle("Simple Picture View");
+		//main_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+		JPanel top_panel = new JPanel();
+		top_panel.setLayout(new BorderLayout());
+		top_panel.add(simple_widget, BorderLayout.CENTER);
+		main_frame.setContentPane(top_panel);
+
+		main_frame.pack();
+		main_frame.setVisible(true);
+		
+		return main_frame;
 	}
-
-	public static int pixelToRGB(Pixel p) {
-		return ((((int) (p.getRed() * 255.0 + 0.5)) << 16) | (((int) (p.getGreen() * 255.0 + 0.5)) << 8)
-				| (((int) (p.getBlue() * 255.0 + 0.5))));
-	}
-
-	public static Pixel rgbToPixel(int RGB) {
-		double red = ((double) ((RGB >> 16) & 0xff)) / 255.0;
-		double green = ((double) ((RGB >> 8) & 0xff)) / 255.0;
-		double blue = ((double) (RGB & 0xff)) / 255.0;
-
-		return new ColorPixel(red, green, blue);
-	}
-
 }
