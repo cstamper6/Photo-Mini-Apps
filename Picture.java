@@ -1,7 +1,5 @@
 package miniapps;
 
-import java.util.Iterator;
-
 public interface Picture {
 
 	// Getters for the dimensions of a picture.
