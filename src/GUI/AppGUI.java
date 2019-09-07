@@ -8,6 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JInternalFrame;
 import java.io.IOException;
+import miniapps.FramePuzzle;
+import miniapps.ImageAdjuster;
+import miniapps.Picture;
+import miniapps.PictureReader;
+import miniapps.PictureViewer;
+import miniapps.PixelInspector;
 
 public class AppGUI {
 
