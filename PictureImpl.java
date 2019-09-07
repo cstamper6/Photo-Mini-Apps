@@ -1,7 +1,5 @@
 package miniapps;
 
-import java.util.Iterator;
-
 // Foundational parent class used to provide Picture subclasses with method implementation
 public abstract class PictureImpl implements Picture {
 
