@@ -3,8 +3,6 @@ package miniapps;
 import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class SimplePictureViewWidget extends JPanel implements MouseListener {
@@ -18,8 +16,8 @@ public class SimplePictureViewWidget extends JPanel implements MouseListener {
 		picture_view.addMouseListener(this);
 		add(picture_view, BorderLayout.CENTER);
 
-		JLabel title_label = new JLabel(picture.getCaption());
-		add(title_label, BorderLayout.SOUTH);
+		// JLabel title_label = new JLabel(picture.getCaption());
+		// add(title_label, BorderLayout.SOUTH);
 	}
 
 	@Override
