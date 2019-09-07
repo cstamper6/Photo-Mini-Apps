@@ -3,7 +3,6 @@ package miniapps;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.Hashtable;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -11,11 +10,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class AdjusterPictureViewWidget extends JPanel implements ChangeListener {
-	
-	
-	// keyboard input updates
-	
-	
 
 	private PictureView pictureView;
 	private JLabel blurLabel;
@@ -105,7 +99,6 @@ public class AdjusterPictureViewWidget extends JPanel implements ChangeListener 
 		brightnessSlider.setPaintLabels(true);
 		listPanel.add(brightnessSlider);
 		brightnessSlider.addChangeListener(this);
-
 	}
 
 	@Override
