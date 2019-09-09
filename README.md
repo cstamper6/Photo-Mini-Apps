@@ -4,6 +4,8 @@ UI based application for image editing tools
 The core of this project was developed in - COMP 401 Foundation of Programming - during Fall 2018.
 Additions have been made to turn the assignment into a full-scale application.
 
+*Java 1.8.0*
+
 # What I Accomplished
 
 * Designed a user interface using AWT and Swing GUI components.
