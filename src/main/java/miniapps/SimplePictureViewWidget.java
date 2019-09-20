@@ -12,12 +12,10 @@ public class SimplePictureViewWidget extends JPanel implements MouseListener {
 	public SimplePictureViewWidget(Picture picture) {
 		setLayout(new BorderLayout());
 
-		picture_view = new PictureView(picture.createObservable());
+		try { picture_view = new PictureView(picture.createObservable());
 		picture_view.addMouseListener(this);
 		add(picture_view, BorderLayout.CENTER);
-
-		// JLabel title_label = new JLabel(picture.getCaption());
-		// add(title_label, BorderLayout.SOUTH);
+		} catch (Exception e) {}
 	}
 
 	@Override

@@ -25,9 +25,10 @@ public class InspectorPictureViewWidget extends JPanel implements MouseListener 
 		setLayout(new BorderLayout());
 		add(listPanel, BorderLayout.WEST);
 
-		pictureView = new PictureView(picture.createObservable());
+		try {pictureView = new PictureView(picture.createObservable());
 		pictureView.addMouseListener(this);
 		add(pictureView, BorderLayout.CENTER);
+		} catch (Exception e) {}
 
 		// label creations
 		xLabel = new JLabel("X: ");

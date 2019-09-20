@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 public class PictureReader {
 
 	public static Picture readFromFile() throws IOException {
+		
 		BufferedImage bi = ImageIO.read(FileChooser.main());
 		Pixel[][] parray = new Pixel[bi.getWidth()][bi.getHeight()];
 		for (int x = 0; x < bi.getWidth(); x++) {
