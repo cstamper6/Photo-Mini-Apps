@@ -1,4 +1,4 @@
-# Photo-Kit
+# photoKit
 UI based application of image editing tools
 
 The core of this project was developed in - COMP 401 Foundation of Programming - during Fall 2018.
